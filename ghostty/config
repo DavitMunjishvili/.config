@@ -1,0 +1,10 @@
+shell-integration-features="no-cursor"
+
+cursor-style="block"
+cursor-style-blink="false"
+
+theme="GruvboxDarkHard"
+
+font-family="JetBrainsMono NFM Medium"
+font-size="24"
+font-synthetic-style="no-bold"
