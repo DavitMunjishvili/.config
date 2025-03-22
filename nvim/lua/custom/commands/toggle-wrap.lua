@@ -12,4 +12,4 @@ vim.api.nvim_create_user_command('ToggleWrap', toggleWrap, {
   desc = 'Toggle wrap',
 })
 
-vim.keymap.set('n', '<leader>tf', '<cmd>FormatToggle<CR>')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>tw', '<cmd>ToggleWrap<CR>')
