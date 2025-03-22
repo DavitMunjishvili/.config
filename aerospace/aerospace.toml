@@ -176,3 +176,8 @@ run = ["layout floating"]
 if.app-id = "app.zen-browser.zen"
 if.window-title-regex-substring = "Picture-in-Picture"
 run = ["layout floating"]
+
+# # Finder config
+[[on-window-detected]]
+if.app-id = "com.apple.finder"
+run = ["layout floating"]
