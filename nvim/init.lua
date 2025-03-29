@@ -96,6 +96,25 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- next error
+vim.keymap.set('n', ']e', function()
+  local diagnostics = vim.diagnostic.get(vim.api.nvim_get_current_buf(), { severity = vim.diagnostic.severity.ERROR })
+  if #diagnostics > 0 then
+    vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+  else
+    vim.notify('No next error found', vim.log.levels.INFO)
+  end
+end, { desc = 'Next [E]rror' })
+
+-- previous error
+vim.keymap.set('n', '[e', function()
+  local diagnostics = vim.diagnostic.get(vim.api.nvim_get_current_buf(), { severity = vim.diagnostic.severity.ERROR })
+  if #diagnostics > 0 then
+    vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+  else
+    vim.notify('No previous error found', vim.log.levels.INFO)
+  end
+end, { desc = 'Previous [E]rror' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
