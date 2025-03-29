@@ -4,6 +4,7 @@ cursor-style="block"
 cursor-style-blink="false"
 
 theme="GruvboxDarkHard"
+macos-icon="retro"
 
 font-family="JetBrainsMono NFM Medium"
 font-size="24"
