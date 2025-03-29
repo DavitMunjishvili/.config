@@ -14,9 +14,11 @@ return {
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
+  ---@module "neo-tree"
+  ---@type neotree.Config?
   opts = {
     filesystem = {
-      hijack_netrw_behavior = 'open_current',
+      hijack_netrw_behavior = 'disabled',
       window = {
         position = 'current',
         mappings = {
