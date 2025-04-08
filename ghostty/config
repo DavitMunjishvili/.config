@@ -4,6 +4,8 @@ cursor-style="block"
 cursor-style-blink="false"
 
 theme="GruvboxDarkHard"
+background-opacity="0.8"
+background-blur="true"
 macos-icon="retro"
 
 font-family="JetBrainsMono NFM Medium"
