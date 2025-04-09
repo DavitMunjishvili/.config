@@ -1,5 +1,3 @@
--- https://github.com/kdheepak/lazygit.nvim
-
 return {
   'kdheepak/lazygit.nvim',
   lazy = true,
@@ -12,10 +10,14 @@ return {
   },
   -- optional for floating window border decoration
   dependencies = {
+    'nvim-telescope/telescope.nvim',
     'nvim-lua/plenary.nvim',
   },
-  -- setting the keybinding for LazyGit with 'keys' is recommended in
-  -- order to load the plugin when the command is run for the first time
+  config = function()
+    require('telescope').load_extension 'lazygit'
+    vim.g.lazygit_floating_window_winblend = 20 -- transparency of floating window
+    vim.g.lazygit_floating_window_scaling_factor = 1 -- scaling factor for floating window
+  end,
   keys = {
     { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
   },
