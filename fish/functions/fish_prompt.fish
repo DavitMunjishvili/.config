@@ -91,7 +91,11 @@ function fish_prompt
   set -l duration_display
   if set -q CMD_DURATION
     set -l duration_string
-    if test $CMD_DURATION -gt 1000
+    if test $CMD_DURATION -gt 3600000
+      set duration_string (math --scale=1 $CMD_DURATION / 3600000)h
+    else if test $CMD_DURATION -gt 60000
+      set duration_string (math --scale=1 $CMD_DURATION / 60000)m
+    else if test $CMD_DURATION -gt 1000
       set duration_string (math --scale=1 $CMD_DURATION / 1000)s
     else
       set duration_string $CMD_DURATION ms
@@ -99,5 +103,5 @@ function fish_prompt
     set duration_display $gray" [$duration_string]"
   end
 
-  echo -n -s $arrow ' '$cwd $repo_info $normal $duration_display ' '
+  echo -n -s $arrow ' '$cwd $repo_info $duration_display $normal ' '
 end
