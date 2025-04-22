@@ -4,6 +4,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.cmd [[
+  autocmd ColorScheme * highlight NormalFloat guibg=#1f2335
+  autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335
+]]
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -96,6 +101,12 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', 'K', function()
+  vim.lsp.buf.hover {
+    border = 'rounded',
+  }
+end)
+
 -- next error
 vim.keymap.set('n', ']e', function()
   local diagnostics = vim.diagnostic.get(vim.api.nvim_get_current_buf(), { severity = vim.diagnostic.severity.ERROR })
@@ -341,14 +352,12 @@ require('lazy').setup({
         --
         defaults = {
           border = true,
-          winblend = 0,
         },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown {
               border = true,
-              winblend = 0,
             },
           },
         },
@@ -377,7 +386,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 5,
           previewer = false,
           border = true,
         })
@@ -430,6 +438,12 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
+      -- Apply the same style to diagnostics float
+      vim.diagnostic.config {
+        float = {
+          border = 'rounded',
+        },
+      }
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
