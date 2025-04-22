@@ -5,8 +5,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.cmd [[
-  autocmd ColorScheme * highlight NormalFloat guibg=#1f2335
-  autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335
+  autocmd ColorScheme * highlight NormalFloat guibg=#282828
+  autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#282828
 ]]
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
