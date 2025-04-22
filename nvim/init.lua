@@ -101,6 +101,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.open_float, { desc = 'Show diagnostics for line' })
 vim.keymap.set('n', 'K', function()
   vim.lsp.buf.hover {
     border = 'rounded',
