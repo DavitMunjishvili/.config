@@ -4,7 +4,7 @@ cursor-style="block"
 cursor-style-blink="false"
 
 theme="GruvboxDarkHard"
-background-opacity="0.8"
+background-opacity="0.7"
 background-blur="true"
 macos-icon="retro"
 
