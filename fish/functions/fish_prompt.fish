@@ -98,7 +98,7 @@ function fish_prompt
     else if test $CMD_DURATION -gt 1000
       set duration_string (math --scale=1 $CMD_DURATION / 1000)s
     else
-      set duration_string $CMD_DURATION ms
+      set duration_string (math --scale=1 $CMD_DURATION)ms
     end
     set duration_display $gray" [$duration_string]"
   end
