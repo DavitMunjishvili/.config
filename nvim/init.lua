@@ -604,6 +604,22 @@ require('lazy').setup({
 
         marksman = {},
 
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              classFunctions = {
+                'classNames',
+                'clsx',
+                'cx',
+                'computedClassName',
+                'styled',
+                'twMerge',
+                'cva',
+              },
+            },
+          },
+        },
+
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
