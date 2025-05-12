@@ -11,6 +11,10 @@ color: #ebdbb2;
 background-color: #1d2021;
 }
 
+#input:focus {
+	box-shadow: none;
+}
+
 #inner-box {
 margin: 5px;
 border: none;
@@ -36,4 +40,5 @@ color: #ebdbb2;
 
 #entry:selected {
 background-color: #1d2021;
+	outline: none;
 }
