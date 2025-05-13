@@ -108,11 +108,13 @@ vim.keymap.set('n', 'K', function()
   }
 end)
 
--- next error
 vim.keymap.set('n', ']e', function()
   local diagnostics = vim.diagnostic.get(vim.api.nvim_get_current_buf(), { severity = vim.diagnostic.severity.ERROR })
   if #diagnostics > 0 then
-    vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+    vim.diagnostic.jump {
+      severity = vim.diagnostic.severity.ERROR,
+      count = 1,
+    }
   else
     vim.notify('No next error found', vim.log.levels.INFO)
   end
@@ -122,7 +124,10 @@ end, { desc = 'Next [E]rror' })
 vim.keymap.set('n', '[e', function()
   local diagnostics = vim.diagnostic.get(vim.api.nvim_get_current_buf(), { severity = vim.diagnostic.severity.ERROR })
   if #diagnostics > 0 then
-    vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+    vim.diagnostic.jump {
+      severity = vim.diagnostic.severity.ERROR,
+      count = -1,
+    }
   else
     vim.notify('No previous error found', vim.log.levels.INFO)
   end
@@ -520,6 +525,14 @@ require('lazy').setup({
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
+          map('<leader>cA', function()
+            vim.lsp.buf.code_action {
+              context = {
+                diagnostics = {},
+              },
+            }
+          end, '[C]ode [A]ction (Source/General)', { 'n', 'x' })
+
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -530,7 +543,7 @@ require('lazy').setup({
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
@@ -557,7 +570,7 @@ require('lazy').setup({
           -- code, if the language server you are using supports them
           --
           -- This may be unwanted, since they displace some of your code
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
@@ -757,12 +770,38 @@ require('lazy').setup({
       'hrsh7th/cmp-path',
     },
     config = function()
-      -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require 'lspkind'
       luasnip.config.setup {}
 
       cmp.setup {
+        experimental = {
+          ghost_text = true,
+        },
+        preselect = cmp.PreselectMode.Item,
+        formatting = {
+          format = lspkind.cmp_format {
+            mode = 'symbol',
+            max_width = 50,
+            symbol_map = { Copilot = '' },
+          },
+        },
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            require('copilot_cmp.comparators').prioritize,
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+          },
+        },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -823,14 +862,16 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          {
-            name = 'lazydev',
-            -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-            group_index = 0,
-          },
+          -- Copilot Source
+          { name = 'copilot' },
+          { name = 'lazydev' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
       }
     end,
