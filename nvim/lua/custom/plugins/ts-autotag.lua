@@ -1,4 +1,12 @@
 return {
   'windwp/nvim-ts-autotag',
-  opts = {},
+  ft = {
+    'html',
+    'xml',
+    'javascriptreact',
+    'typescriptreact',
+  },
+  config = function()
+    require('nvim-ts-autotag').setup {}
+  end,
 }

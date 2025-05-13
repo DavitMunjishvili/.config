@@ -1,7 +1,7 @@
--- Add this to your lazy.nvim setup
 return {
   {
     'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
     config = function()
       require('copilot').setup {
         suggestion = {
