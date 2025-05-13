@@ -8,6 +8,9 @@ return {
       lint.linters_by_ft = lint.linters_by_ft or {}
       lint.linters_by_ft['markdown'] = { 'markdownlint-cli2' }
       lint.linters_by_ft['python'] = { 'ruff' }
+      lint.linters_by_ft['javascript'] = { 'eslint_d' }
+      lint.linters_by_ft['typescript'] = { 'eslint_d' }
+      lint.linters_by_ft['bash'] = { 'shellcheck' }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
