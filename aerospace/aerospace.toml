@@ -167,6 +167,7 @@ alt-shift-l = ['join-with right', 'mode main']
 down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
+shift-up = ['volume set 100', 'mode main']
 
 # # Ghostty config
 [[on-window-detected]]
