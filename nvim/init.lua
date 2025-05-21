@@ -36,7 +36,7 @@ vim.opt.wrap = false
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = true
+vim.opt.showmode = false
 
 -- Tabstop
 vim.opt.tabstop = 2
@@ -89,6 +89,10 @@ vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
+
+-- Enable spell checking
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us' -- Set spell language to US English
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -211,24 +215,8 @@ require('lazy').setup({
   --
   -- Use `opts = {}` to force a plugin to be loaded.
   --
-
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-  --    require('gitsigns').setup({ ... })
-  --
-  -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
+  -- NOTE: gitsigns.nvim configuration has been moved to lua/kickstart/plugins/gitsigns.lua
+  -- and is loaded via the `require 'kickstart.plugins.gitsigns'` line later in this file.
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -589,14 +577,14 @@ require('lazy').setup({
       })
 
       -- Change diagnostic symbols in the sign column (gutter)
-      -- if vim.g.have_nerd_font then
-      --   local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-      --   local diagnostic_signs = {}
-      --   for type, icon in pairs(signs) do
-      --     diagnostic_signs[vim.diagnostic.severity[type]] = icon
-      --   end
-      --   vim.diagnostic.config { signs = { text = diagnostic_signs } }
-      -- end
+      if vim.g.have_nerd_font then
+        local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+        local diagnostic_signs = {}
+        for type, icon in pairs(signs) do
+          diagnostic_signs[vim.diagnostic.severity[type]] = icon
+        end
+        vim.diagnostic.config { signs = { text = diagnostic_signs } }
+      end
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -669,14 +657,26 @@ require('lazy').setup({
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
+      -- This list is for LSP servers managed by mason-lspconfig
+      local lsp_ensure_installed = vim.tbl_keys(servers or {})
+      -- Note: 'stylua' was here, but it's a formatter, not an LSP, so it belongs with mason-tool-installer.
+
+      -- Setup mason-tool-installer to manage non-LSP tools
+      local non_lsp_tools_ensure_installed = {
         'stylua',
-      })
-      -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+        'shfmt',
+        'prettier', -- Mason usually provides 'prettier' which includes prettierd
+        'markdownlint-cli', -- Or 'markdownlint' / 'markdownlint-cli2' depending on Mason availability
+        'eslint_d', -- Or 'eslint'
+        'shellcheck',
+      }
+      require('mason-tool-installer').setup {
+        ensure_installed = non_lsp_tools_ensure_installed,
+        -- You can add other options like auto_update = true, run_on_start = true etc. if desired
+      }
 
       require('mason-lspconfig').setup {
-        ensure_installed = vim.tbl_keys(servers),
+        ensure_installed = lsp_ensure_installed, -- Use the LSP-specific list here
         automatic_installation = true,
         handlers = {
           function(server_name)
@@ -976,7 +976,10 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'graphql', 'http', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'graphql', 'http', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', -- existing
+        'python', 'typescript', 'javascript', 'tsx', 'jsx', 'go', 'rust', 'css', 'json', 'yaml', -- added
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
