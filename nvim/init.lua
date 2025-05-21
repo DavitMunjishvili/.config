@@ -89,6 +89,11 @@ vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
+vim.opt.spell = true
+
+-- Enable spell checking
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us' -- Set spell language to US English
 
 -- Enable spell checking
 vim.opt.spell = true
