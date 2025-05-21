@@ -987,7 +987,7 @@ require('lazy').setup({
     opts = {
       ensure_installed = {
         'graphql', 'http', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', -- existing
-        'python', 'typescript', 'javascript', 'tsx', 'jsx', 'go', 'rust', 'css', 'json', 'yaml', 'kotlin', -- added
+        'python', 'typescript', 'javascript', 'tsx', 'go', 'rust', 'css', 'json', 'yaml', 'kotlin', -- added
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
