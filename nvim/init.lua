@@ -89,6 +89,7 @@ vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
+vim.opt.spell = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
