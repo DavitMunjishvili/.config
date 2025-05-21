@@ -95,6 +95,10 @@ vim.opt.spell = true
 vim.opt.spell = true
 vim.opt.spelllang = 'en_us' -- Set spell language to US English
 
+-- Enable spell checking
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us' -- Set spell language to US English
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -434,6 +438,7 @@ require('lazy').setup({
       'go',
       'bash',
       'sh',
+      'kotlin', -- Added for Kotlin
     },
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
@@ -614,6 +619,7 @@ require('lazy').setup({
         -- prettierd = {},
         -- prettier = {},
 
+        kotlin_language_server = {}, -- Added for Kotlin
         marksman = {},
 
         tailwindcss = {
@@ -670,6 +676,7 @@ require('lazy').setup({
         'markdownlint-cli', -- Or 'markdownlint' / 'markdownlint-cli2' depending on Mason availability
         'eslint_d', -- Or 'eslint'
         'shellcheck',
+        'ktlint', -- Added for Kotlin
       }
       require('mason-tool-installer').setup {
         ensure_installed = non_lsp_tools_ensure_installed,
@@ -741,6 +748,7 @@ require('lazy').setup({
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
+        kotlin = { 'ktlint' }, -- Added for Kotlin
       },
     },
   },
@@ -979,7 +987,7 @@ require('lazy').setup({
     opts = {
       ensure_installed = {
         'graphql', 'http', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', -- existing
-        'python', 'typescript', 'javascript', 'tsx', 'jsx', 'go', 'rust', 'css', 'json', 'yaml', -- added
+        'python', 'typescript', 'javascript', 'tsx', 'jsx', 'go', 'rust', 'css', 'json', 'yaml', 'kotlin', -- added
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
