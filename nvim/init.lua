@@ -418,7 +418,6 @@ require('lazy').setup({
     ft = 'lua',
     opts = {
       library = {
-        -- Load luvit types when the `vim.uv` word is found
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
       },
     },
@@ -442,7 +441,7 @@ require('lazy').setup({
       'go',
       'bash',
       'sh',
-      'kotlin', -- Added for Kotlin
+      'kotlin',
     },
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
@@ -620,10 +619,8 @@ require('lazy').setup({
         rust_analyzer = {},
 
         ts_ls = {},
-        -- prettierd = {},
-        -- prettier = {},
 
-        kotlin_language_server = {}, -- Added for Kotlin
+        kotlin_language_server = {},
         marksman = {},
 
         tailwindcss = {
@@ -676,11 +673,10 @@ require('lazy').setup({
       local non_lsp_tools_ensure_installed = {
         'stylua',
         'shfmt',
-        'prettier', -- Mason usually provides 'prettier' which includes prettierd
-        'markdownlint-cli', -- Or 'markdownlint' / 'markdownlint-cli2' depending on Mason availability
-        'eslint_d', -- Or 'eslint'
+        'markdownlint-cli',
+        'eslint_d',
         'shellcheck',
-        'ktlint', -- Added for Kotlin
+        'ktlint',
       }
       require('mason-tool-installer').setup {
         ensure_installed = non_lsp_tools_ensure_installed,
@@ -745,14 +741,13 @@ require('lazy').setup({
         python = { 'ruff' },
         bash = { 'shfmt' },
 
-        -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
-        kotlin = { 'ktlint' }, -- Added for Kotlin
+        kotlin = { 'ktlint' },
       },
     },
   },
@@ -1002,7 +997,7 @@ require('lazy').setup({
         'markdown_inline',
         'query',
         'vim',
-        'vimdoc', -- existing
+        'vimdoc',
         'python',
         'typescript',
         'javascript',
@@ -1012,7 +1007,7 @@ require('lazy').setup({
         'css',
         'json',
         'yaml',
-        'kotlin', -- added
+        'kotlin',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
