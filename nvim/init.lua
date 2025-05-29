@@ -441,6 +441,7 @@ require('lazy').setup({
       'go',
       'bash',
       'sh',
+      'dart',
       'kotlin',
     },
     dependencies = {
