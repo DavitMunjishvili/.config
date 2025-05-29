@@ -10,3 +10,7 @@ HACKY
 MFE
 px
 scalability
+localhost
+postgres
+dbname
+enum
