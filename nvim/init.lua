@@ -445,6 +445,9 @@ require('lazy').setup({
       'sh',
       'dart',
       'kotlin',
+      'zsh',
+      'bash',
+      'sh'
     },
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
