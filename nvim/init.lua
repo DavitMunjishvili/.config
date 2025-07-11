@@ -447,7 +447,8 @@ require('lazy').setup({
       'kotlin',
       'zsh',
       'bash',
-      'sh'
+      'sh',
+      'dockerfile',
     },
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
