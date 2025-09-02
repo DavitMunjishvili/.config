@@ -8,6 +8,7 @@ return {
       require('notify').setup {
         background_colour = '#000000',
         merge_duplicates = true,
+        top_down = false,
         render = 'minimal',
         stages = 'static',
         icons = {
