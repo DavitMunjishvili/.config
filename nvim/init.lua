@@ -755,6 +755,7 @@ require('lazy').setup({
         html = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
         kotlin = { 'ktlint' },
+        markdown = { 'markdownlint-cli2' },
       },
     },
   },
