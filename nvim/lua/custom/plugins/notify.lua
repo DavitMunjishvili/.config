@@ -6,7 +6,7 @@ return {
       vim.notify = require 'notify'
 
       require('notify').setup {
-        background_colour = '#000000',
+        fps = 1,
         merge_duplicates = true,
         top_down = false,
         render = 'minimal',
