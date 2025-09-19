@@ -3,11 +3,11 @@ shell-integration-features="no-cursor"
 cursor-style="block"
 cursor-style-blink="false"
 
-theme="GruvboxDarkHard"
+theme="Gruvbox Dark Hard"
 background-opacity="0.9"
 background-blur="true"
 macos-icon="retro"
 
-font-family="JetBrainsMono NFM Medium"
+font-family="JetBrainsMono Nerd Font Mono"
 font-size="20"
 font-synthetic-style="no-bold"
