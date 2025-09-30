@@ -169,16 +169,31 @@ up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
 shift-up = ['volume set 100', 'mode main']
 
-# # Ghostty config
+# # Zen PIP config
 [[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty"
+if.app-id = "app.zen-browser.zen"
+if.window-title-regex-substring = "Picture-in-Picture"
 run = ["layout floating"]
 
 # # Zen config
 [[on-window-detected]]
 if.app-id = "app.zen-browser.zen"
-if.window-title-regex-substring = "Picture-in-Picture"
-run = ["layout floating"]
+run = ["layout floating", "move-node-to-workspace 1"]
+
+# # Ghostty config
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = ["layout floating", "move-node-to-workspace 2"]
+
+# # Spotify config
+[[on-window-detected]]
+if.app-id = "com.spotify.client"
+run = ["move-node-to-workspace 8"]
+
+# # Slack config
+[[on-window-detected]]
+if.app-id = "com.tinyspeck.slackmacgap"
+run = ["move-node-to-workspace 9"]
 
 # # Finder config
 [[on-window-detected]]
