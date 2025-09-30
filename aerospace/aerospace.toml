@@ -178,7 +178,7 @@ run = ["layout floating"]
 # # Zen config
 [[on-window-detected]]
 if.app-id = "app.zen-browser.zen"
-run = ["layout floating", "move-node-to-workspace 1"]
+run = ["move-node-to-workspace 1"]
 
 # # Ghostty config
 [[on-window-detected]]
