@@ -41,7 +41,7 @@ return {
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      { 'j-hui/fidget.nvim', event = 'LspAttach', opts = {} },
+      { 'j-hui/fidget.nvim', event = 'LspAttach', opts = { notification = { override_vim_notify = true } } },
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
