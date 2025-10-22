@@ -267,7 +267,7 @@ return {
       local non_lsp_tools_ensure_installed = {
         'stylua',
         'shfmt',
-        'markdownlint-cli',
+        'markdownlint-cli2',
         'eslint_d',
         'shellcheck',
         'ktlint',
