@@ -13,3 +13,6 @@ macos-icon="retro"
 font-family="JetBrainsMono Nerd Font Mono"
 font-size="20"
 font-synthetic-style="no-bold"
+
+quick-terminal-autohide="false"
+keybind=global:cmd+backquote=toggle_quick_terminal
