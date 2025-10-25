@@ -1,3 +1,4 @@
+shell-integration="fish"
 shell-integration-features="no-cursor"
 macos-titlebar-style = tabs
 
