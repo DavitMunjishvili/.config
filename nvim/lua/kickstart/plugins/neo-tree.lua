@@ -1,29 +1,42 @@
+-- local function preview_image(path)
+--   local width = math.floor(vim.o.columns * 0.8)
+--   local height = math.floor(vim.o.lines * 0.8)
+--
+--   local buf = vim.api.nvim_create_buf(false, true)
+--   local win = vim.api.nvim_open_win(buf, true, {
+--     relative = 'editor',
+--     width = width,
+--     height = height,
+--     row = math.floor((vim.o.lines - height) / 2),
+--     col = math.floor((vim.o.columns - width) / 2),
+--     style = 'minimal',
+--     border = 'single',
+--   })
+--
+--   -- Mark buffer as terminal
+--   vim.fn.termopen { 'viu', '-w', tostring(width - 16), path }
+--
+--   vim.api.nvim_buf_set_keymap(buf, 'n', 'q', '<cmd>bd!<CR>', {
+--     nowait = true,
+--     noremap = true,
+--     silent = true,
+--   })
+--
+--   vim.cmd 'startinsert'
+-- end
+
 local function preview_image(path)
-  local width = math.floor(vim.o.columns * 0.8)
-  local height = math.floor(vim.o.lines * 0.8)
-
-  local buf = vim.api.nvim_create_buf(false, true)
-  local win = vim.api.nvim_open_win(buf, true, {
-    relative = 'editor',
-    width = width,
-    height = height,
-    row = math.floor((vim.o.lines - height) / 2),
-    col = math.floor((vim.o.columns - width) / 2),
-    style = 'minimal',
-    border = 'single',
-  })
-
-  -- Mark buffer as terminal
-  vim.fn.termopen { 'viu', '-w', tostring(width - 16), path }
-
-  vim.api.nvim_buf_set_keymap(buf, 'n', 'q', '<cmd>bd!<CR>', {
-    nowait = true,
-    noremap = true,
-    silent = true,
-  })
-
-  vim.cmd 'startinsert'
+  -- Check if the operating system is macOS
+  if vim.fn.has 'mac' == 1 then
+    -- Use vim.fn.jobstart to run the 'open' command asynchronously.
+    -- '-a Preview' specifies opening the file with the Preview.app.
+    vim.fn.jobstart { 'open', '-a', 'Preview', path }
+  else
+    -- You could add a fallback here for other systems
+    print 'Error: This function is configured for macOS Preview only.'
+  end
 end
+
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
