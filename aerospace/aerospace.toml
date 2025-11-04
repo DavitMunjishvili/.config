@@ -194,3 +194,9 @@ run = ["move-node-to-workspace 9"]
 [[on-window-detected]]
 if.app-id = "com.apple.finder"
 run = ["layout floating"]
+
+
+# # Preview config
+[[on-window-detected]]
+if.app-id = "com.apple.Preview"
+run = ["layout floating"]
