@@ -1,4 +1,4 @@
 
-function lg
+function gg
     lazygit
 end
