@@ -54,10 +54,8 @@ require('lazy').setup({
   { import = 'core.plugins.completion' },
   { import = 'core.plugins.ui' },
   { import = 'core.plugins.treesitter' },
-  require 'kickstart.plugins.debug',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns',
   { import = 'custom.plugins' },
 }, {

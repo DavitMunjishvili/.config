@@ -9,6 +9,6 @@ return {
         'tsx',
       }
     end,
-    lazy = false,
+    event = { 'BufReadPre', 'BufNewFile' },
   },
 }

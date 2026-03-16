@@ -212,7 +212,7 @@ return {
         pyright = {},
         rust_analyzer = {},
 
-        ts_ls = {},
+        vtsls = {},
 
         kotlin_language_server = {},
         marksman = {},
