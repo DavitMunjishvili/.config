@@ -5,7 +5,7 @@ return {
   opts = {
     bigfile = { enabled = true },
     notifier = { enabled = true },
-    quickfile = { enabled = true },
+    quickfile = { enabled = false },
     statuscolumn = { enabled = false },
     words = { enabled = true },
   },
