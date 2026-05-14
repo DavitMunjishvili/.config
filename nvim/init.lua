@@ -5,6 +5,7 @@ vim.g.maplocalleader = ' '
 vim.cmd [[
   autocmd ColorScheme * highlight NormalFloat guibg=#282828
   autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#282828
+  cnoreabbrev W w
 ]]
 
 vim.g.have_nerd_font = true
